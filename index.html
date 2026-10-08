@@ -6,68 +6,87 @@
 <title>Bin 💖 Bean</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 <style>
-:root{--sky:#bfe9ff;--pink:#ffc2e2;--lilac:#d9c7ff;--sun:#ffe58a;--ink:#3b1f5c;--hot:#ff4fa3;--card:#ffffffd9}
+:root{--rose:#ff4f8b;--blush:#ffe3ef;--peach:#ffd6c9;--lilac:#ecddff;--ink:#4a1d3f;--card:#ffffffdd}
 *{box-sizing:border-box;margin:0}
 html,body{height:100%;overflow:hidden}
-body{font-family:'Quicksand',sans-serif;color:var(--ink);background:linear-gradient(120deg,var(--sky),var(--pink),var(--lilac),var(--sun));background-size:300% 300%;animation:bg 14s ease infinite;-webkit-tap-highlight-color:transparent}
+body{font-family:'Quicksand',sans-serif;color:var(--ink);background:linear-gradient(130deg,#ffd1e3,var(--peach),var(--lilac),#ffe3ef);background-size:300% 300%;animation:bg 16s ease infinite;-webkit-tap-highlight-color:transparent}
 @keyframes bg{50%{background-position:100% 50%}}
 h1,h2{font-family:'Baloo 2',cursive;line-height:1.05}
-h1{font-size:clamp(2.6rem,9vw,5rem)}h2{font-size:clamp(1.8rem,6vw,3rem)}
+h1{font-size:clamp(3rem,11vw,6rem)}h2{font-size:clamp(1.8rem,6vw,3rem)}
+.love{background:linear-gradient(90deg,#ff4f8b,#ff8fb8,#ff6a5c,#ff4f8b);background-size:250%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 5s linear infinite;filter:drop-shadow(0 4px 0 #fff)}
+@keyframes flow{to{background-position:250%}}
 #fx{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
 #fx span{position:absolute;bottom:-60px;animation:rise linear forwards}
-@keyframes rise{to{transform:translateY(-115vh) rotate(40deg);opacity:0}}
-.spark{position:fixed;pointer-events:none;z-index:50;animation:pop .8s forwards}
-@keyframes pop{to{transform:translateY(-30px) scale(0);opacity:0}}
+@keyframes rise{50%{margin-left:30px}to{transform:translateY(-115vh) rotate(40deg);opacity:0}}
+.spark{position:fixed;pointer-events:none;z-index:90;animation:pop .9s forwards}
+@keyframes pop{to{transform:translateY(-40px) scale(0);opacity:0}}
 #deck{position:fixed;inset:0;z-index:2}
-.page{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:max(24px,env(safe-area-inset-top)) 64px max(70px,env(safe-area-inset-bottom));text-align:center;transition:transform .6s cubic-bezier(.7,0,.2,1),opacity .6s;opacity:0;transform:translateX(100%);overflow-y:auto}
-.page.on{opacity:1;transform:none}.page.prev{transform:translateX(-100%)}
-.nav{position:fixed;top:50%;z-index:20;width:52px;height:52px;margin-top:-26px;border:0;border-radius:50%;background:#fff;color:var(--hot);font:800 26px 'Baloo 2';cursor:pointer;box-shadow:0 6px 20px #ff4fa355;transition:.2s}
-.nav:hover{transform:scale(1.15) rotate(8deg)}.nav:disabled{opacity:.25;pointer-events:none}
+.page{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:max(24px,env(safe-area-inset-top)) 64px max(72px,env(safe-area-inset-bottom));text-align:center;transition:transform .7s cubic-bezier(.7,0,.2,1),opacity .6s;opacity:0;transform:translateX(100%) scale(.96);overflow-y:auto}
+.page.on{opacity:1;transform:none}.page.prev{transform:translateX(-100%) scale(.96)}
+.nav{position:fixed;top:50%;z-index:20;width:54px;height:54px;margin-top:-27px;border:0;border-radius:50%;background:#fff;color:var(--rose);font:800 26px 'Baloo 2';cursor:pointer;box-shadow:0 8px 22px #ff4f8b55;transition:.2s}
+.nav:hover{transform:scale(1.15) rotate(8deg)}.nav:disabled{opacity:.2;pointer-events:none}
 #L{left:max(8px,env(safe-area-inset-left))}#R{right:max(8px,env(safe-area-inset-right))}
 #dots{position:fixed;bottom:max(18px,env(safe-area-inset-bottom));left:0;right:0;z-index:20;display:flex;justify-content:center;gap:10px}
 #dots i{width:12px;height:12px;border-radius:50%;background:#fff9;transition:.3s;cursor:pointer}
-#dots i.on{background:var(--hot);width:34px;border-radius:8px}
+#dots i.on{background:var(--rose);width:36px;border-radius:8px}
 .sticker{font-size:clamp(3rem,12vw,6rem);animation:bob 2.4s ease-in-out infinite}
 @keyframes bob{50%{transform:translateY(-14px) rotate(6deg)}}
-.avatars{display:flex;align-items:center;gap:clamp(8px,4vw,32px)}
-.av{width:clamp(110px,28vw,170px);height:clamp(110px,28vw,170px);border-radius:50%;background:#fff;display:grid;place-items:center;font-size:clamp(3.5rem,13vw,6rem);box-shadow:0 0 0 8px var(--c),0 14px 30px #0002;position:relative;animation:bob 3s ease-in-out infinite}
-.av b{position:absolute;bottom:-14px;background:var(--c);color:#fff;font:800 1.1rem 'Baloo 2';padding:2px 16px;border-radius:20px}
+.avatars{display:flex;align-items:center;gap:clamp(6px,3vw,28px)}
+.av{width:clamp(115px,29vw,180px);height:clamp(115px,29vw,180px);border-radius:50%;background:#fff;display:grid;place-items:center;font-size:clamp(3.8rem,14vw,6.4rem);box-shadow:0 0 0 8px var(--c),0 0 0 14px #fff8,0 18px 34px #4a1d3f33;position:relative;animation:bob 3s ease-in-out infinite}
+.av b{position:absolute;bottom:-16px;background:var(--c);color:#fff;font:800 1.15rem 'Baloo 2';padding:2px 18px;border-radius:20px}
 .av.b2{animation-delay:-1.5s}
-.beat{font-size:clamp(2.4rem,9vw,4rem);animation:beat 1s infinite}
+.beat{font-size:clamp(2.4rem,9vw,4rem);animation:beat 1.1s infinite}
 @keyframes beat{15%{transform:scale(1.35)}30%{transform:scale(1)}45%{transform:scale(1.25)}}
-.rainbow{background:linear-gradient(90deg,#ff4fa3,#8a5cff,#27a9ff,#ff4fa3);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 4s linear infinite}
-@keyframes flow{to{background-position:200%}}
-.marq{width:min(92vw,720px);overflow:hidden;border-radius:30px;background:var(--card);padding:10px 0}
-.marq div{display:inline-block;white-space:nowrap;animation:mq 22s linear infinite;font-weight:700}
+.marq{width:min(92vw,720px);overflow:hidden;border-radius:30px;background:var(--card);padding:10px 0;box-shadow:0 8px 20px #ff4f8b22}
+.marq div{display:inline-block;white-space:nowrap;animation:mq 24s linear infinite;font-weight:700}
 .marq span{margin:0 18px}
 @keyframes mq{to{transform:translateX(-50%)}}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:12px;width:min(94vw,640px)}
-.opt{background:var(--card);border:3px solid transparent;border-radius:24px;padding:14px 6px;cursor:pointer;font:700 .95rem 'Quicksand';color:var(--ink);transition:.25s;position:relative}
-.opt em{display:block;font-style:normal;font-size:2.8rem;transition:.3s}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;width:min(94vw,680px)}
+.opt{background:var(--card);border:3px solid transparent;border-radius:24px;padding:12px 6px;cursor:pointer;font:700 .92rem 'Quicksand';color:var(--ink);transition:.25s;position:relative}
+.opt em{display:block;font-style:normal;font-size:2.7rem;transition:.3s}
 .opt:hover em{transform:scale(1.2) rotate(-8deg)}
-.opt.sel{border-color:var(--hot);background:#fff;transform:translateY(-6px);box-shadow:0 10px 22px #ff4fa355}
+.opt.sel{border-color:var(--rose);background:#fff;transform:translateY(-6px);box-shadow:0 12px 24px #ff4f8b55}
 .opt.sel::after{content:'💖';position:absolute;top:-10px;right:-6px;font-size:1.4rem;animation:beat 1s infinite}
-.tag{background:#fff;border-radius:30px;padding:6px 18px;font-weight:700}
+.opt.big em{font-size:3.2rem}
+.tag{background:#fff;border-radius:30px;padding:6px 18px;font-weight:700;box-shadow:0 4px 12px #ff4f8b22}
+.tray{min-height:3.2rem;font-size:2rem;letter-spacing:2px}
 .flip{perspective:700px;width:150px;height:170px;cursor:pointer}
 .flip>div{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
 .flip.f>div{transform:rotateY(180deg)}
-.flip p{position:absolute;inset:0;border-radius:26px;display:grid;place-items:center;backface-visibility:hidden;background:#fff;box-shadow:0 10px 24px #0002;padding:10px;font-weight:700}
-.flip p:first-child{font-size:4rem}.flip p+p{transform:rotateY(180deg);background:var(--hot);color:#fff;font-size:1.05rem}
+.flip p{position:absolute;inset:0;border-radius:26px;display:grid;place-items:center;backface-visibility:hidden;background:#fff;box-shadow:0 10px 24px #4a1d3f22;padding:10px;font-weight:700}
+.flip p:first-child{font-size:4rem}.flip p+p{transform:rotateY(180deg);background:linear-gradient(160deg,#ff4f8b,#ff8fb8);color:#fff;font-size:1.05rem}
 .row{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
 .path{display:flex;flex-direction:column;gap:14px;width:min(92vw,420px);position:relative}
-.stop{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:60px;padding:10px 22px 10px 10px;cursor:pointer;font-weight:700;text-align:left;transition:.3s}
+.path::before{content:'';position:absolute;left:50%;top:20px;bottom:20px;border-left:4px dotted #ff4f8b99}
+.stop{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:60px;padding:10px 22px 10px 10px;cursor:pointer;font-weight:700;text-align:left;transition:.3s;position:relative;opacity:0;transform:translateY(30px)}
+.page.on .stop{animation:in .6s calc(var(--d)*.45s + .5s) forwards}
+@keyframes in{to{opacity:1;transform:none}}
 .stop:nth-child(even){flex-direction:row-reverse;text-align:right;padding:10px 10px 10px 22px}
-.stop i{font-style:normal;font-size:2.4rem;width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;box-shadow:0 4px 12px #0002}
-.stop:hover{transform:scale(1.05)}
+.stop i{font-style:normal;font-size:2.4rem;width:64px;height:64px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;box-shadow:0 4px 12px #4a1d3f22}
+.stop:hover i{transform:scale(1.15) rotate(-8deg)}
 .stop.pop i{animation:beat .8s}
-.btn{border:0;border-radius:40px;background:linear-gradient(90deg,#ff4fa3,#8a5cff);color:#fff;font:800 1.3rem 'Baloo 2';padding:12px 34px;cursor:pointer;box-shadow:0 10px 24px #ff4fa366;transition:.2s}
-.btn:hover{transform:scale(1.07)}.btn:disabled{opacity:.6}
+.btn{border:0;border-radius:40px;background:linear-gradient(90deg,#ff4f8b,#ff7aa8);color:#fff;font:800 1.3rem 'Baloo 2';padding:12px 34px;cursor:pointer;box-shadow:0 10px 24px #ff4f8b66;transition:.2s;position:relative;overflow:hidden}
+.btn:hover{transform:scale(1.07)}.btn:disabled{opacity:.6;pointer-events:none}
+.btn.ghost{background:#fff;color:var(--rose);box-shadow:0 6px 16px #ff4f8b33}
+.btn::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:#fff6;transform:skewX(-20deg);animation:shine 3s infinite}
+@keyframes shine{to{left:130%}}
 .inp{width:min(88vw,380px);border:3px solid #fff;border-radius:40px;padding:14px 22px;font:700 1.1rem 'Quicksand';color:var(--ink);text-align:center;outline:0;background:#fffc;transition:.2s}
-.inp:focus{border-color:var(--hot);background:#fff}
+.inp:focus{border-color:var(--rose);background:#fff;box-shadow:0 0 0 6px #ff4f8b33}
 .err{color:#d6004f;font-weight:700;min-height:1.4em}
-.sum{background:var(--card);border-radius:28px;padding:16px 22px;max-width:min(92vw,440px);font-size:1.8rem;line-height:1.5}
+.sum{background:var(--card);border-radius:28px;padding:16px 20px;width:min(92vw,460px);text-align:left;box-shadow:0 10px 26px #ff4f8b22}
+.sum h3{font:800 1rem 'Baloo 2';color:var(--rose);margin-bottom:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.chips span{background:var(--blush);border-radius:20px;padding:3px 12px;font-weight:700;font-size:.9rem}
+#modal{position:fixed;inset:0;z-index:80;display:none;place-items:center;background:#4a1d3f66;backdrop-filter:blur(6px)}
+#modal.on{display:grid}
+.box{background:#fff;border-radius:34px;padding:28px 24px;width:min(90vw,400px);text-align:center;animation:zoom .45s cubic-bezier(.3,1.6,.5,1);position:relative;overflow:hidden;min-height:290px}
+@keyframes zoom{from{transform:scale(.4);opacity:0}}
+.box .sticker{font-size:4.2rem}
+.box p{font-weight:700;margin:8px 0 16px}
+.box .acts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;min-height:56px}
+.env{font-size:5rem;animation:fly 1.3s ease-in infinite}
+@keyframes fly{40%{transform:translateY(-14px) rotate(-8deg)}to{transform:translate(160px,-130px) scale(.2) rotate(20deg);opacity:0}}
 .ok{font-size:7rem;animation:bob 1.6s infinite}
-a.nav-link{color:var(--hot);font-weight:700}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.001s!important;animation-iteration-count:1!important}}
 </style>
 </head>
@@ -77,96 +96,97 @@ a.nav-link{color:var(--hot);font-weight:700}
 
 <section class="page">
   <div class="avatars">
-    <div class="av" style="--c:#27a9ff">👨🏻<b>Bin</b></div>
+    <div class="av" style="--c:#4aa8ff">👨🏻<b>Bin</b></div>
     <div class="beat">💞</div>
-    <div class="av b2" style="--c:#ff4fa3">👨🏽<b>Bean</b></div>
+    <div class="av b2" style="--c:#ff4f8b">👨🏽<b>Bean</b></div>
   </div>
-  <h1 class="rainbow">Bin &amp; Bean</h1>
-  <div class="sticker" style="font-size:2.6rem">🌈 👬 🫶 🏳️‍🌈 ✨</div>
+  <h1 class="love">Bin &amp; Bean</h1>
+  <div class="sticker" style="font-size:2.6rem">💍 🫶 💌 ✨ 🥹</div>
   <div class="marq"><div id="mq"></div></div>
 </section>
 
 <section class="page">
-  <h2>Chọn sính lễ 🎁</h2>
+  <h2 class="love">Chọn sính lễ 🎁</h2>
   <div class="tag">Chạm để bỏ vào mâm · <span id="cnt">0</span> món</div>
   <div class="grid" id="gifts"></div>
+  <div class="tray" id="tray"></div>
 </section>
 
 <section class="page">
-  <h2>Vài điều nhỏ 🤫</h2>
+  <h2 class="love">Vài điều nhỏ 🤫</h2>
   <div class="tag">Lật thẻ ra xem</div>
   <div class="row" id="flips"></div>
 </section>
 
 <section class="page">
-  <h2>Hành trình của tụi mình 🗺️</h2>
+  <h2 class="love">Hành trình của tụi mình 🗺️</h2>
   <div class="path" id="path"></div>
 </section>
 
 <section class="page">
-  <h2>Mai này tụi mình… 🔮</h2>
+  <h2 class="love">Mai này tụi mình… 🔮</h2>
   <div class="tag">Chọn những điều muốn có</div>
   <div class="grid" id="wishes"></div>
-  <div class="sticker" id="future" style="font-size:2.6rem;min-height:3.4rem"></div>
+  <div class="tray" id="future"></div>
 </section>
 
 <section class="page">
   <div class="sticker">💌</div>
-  <h2>Gửi thiệp cho ai nè?</h2>
+  <h2 class="love">Gửi thiệp cho ai nè?</h2>
   <input class="inp" id="mail" type="email" placeholder="email@cua-ban.com" autocomplete="email">
   <div class="err" id="err"></div>
   <button class="btn" id="next6">Tiếp nào 💘</button>
 </section>
 
 <section class="page">
-  <div id="p7a">
-    <div class="sticker" style="margin-bottom:10px">🔐</div>
-    <h2>Chốt đơn thương nhau?</h2>
-    <div class="sum" id="sum" style="margin:14px auto"></div>
-    <div class="tag" id="to" style="display:inline-block;margin-bottom:14px"></div><br>
-    <button class="btn" id="send">Xác nhận &amp; gửi mail 💖</button>
-    <div class="err" id="serr" style="margin-top:8px"></div>
+  <div class="sticker">🔐</div>
+  <h2 class="love">Chốt đơn thương nhau?</h2>
+  <div class="sum">
+    <h3>Sính lễ</h3><div class="chips" id="sg"></div>
+    <h3>Mai này</h3><div class="chips" id="sw"></div>
+    <h3>Gửi xác nhận tới</h3><div class="chips"><span id="sm"></span></div>
   </div>
-  <div id="p7b" style="display:none">
-    <div class="ok">🥳</div>
-    <h2 class="rainbow">Đã chốt!</h2>
-    <p class="tag" style="display:inline-block;margin-top:12px" id="done"></p>
-  </div>
+  <button class="btn" id="open">Xác nhận 💖</button>
 </section>
 
 </div>
 
+<div id="modal"><div class="box" id="box"></div></div>
 <button class="nav" id="L" aria-label="Trang trước">&lt;</button>
 <button class="nav" id="R" aria-label="Trang sau">&gt;</button>
 <div id="dots"></div>
 
 <script>
-/* ===== CẤU HÌNH GỬI MAIL THẬT (EmailJS) =====
-   Tạo tài khoản emailjs.com → điền 3 giá trị dưới đây.
-   Template cần dùng biến: {{to_email}}, {{gifts}}, {{wishes}}.
-   Để trống = sẽ mở app mail có sẵn nội dung (mailto). */
+/* ===== GỬI MAIL TỰ ĐỘNG (EmailJS, không cần server) =====
+   1) emailjs.com → tạo tài khoản → Email Services → nối Gmail của bạn → lấy service_id
+   2) Email Templates → tạo template, dán nội dung file email-template.html → lấy template_id
+      (ô "To email" điền: {{to_email}})
+   3) Account → Public Key → điền vào user_id
+   Điền xong là bấm xác nhận sẽ tự gửi mail hồng đến địa chỉ người dùng nhập. */
 const EMAILJS={service_id:'',template_id:'',user_id:''};
 
 const $=s=>document.querySelector(s);
 const st={gifts:new Set(),wishes:new Set(),email:''};
-const phrases=['Gét gô về chung nhà 🏠','Chốt đơn thương nhau 📦💖','Cưng xỉu up xỉu down 🥹','Thương hết nước chấm 🫶','Không phải crush, là chốt luôn 😎','Say yes nha 💍','Hết nước chấm luôn á 🔥','Hai đứa mình là best couple 🏆'];
+const phrases=['Gét gô về chung nhà 🏠','Chốt đơn thương nhau 📦💖','Cưng xỉu up xỉu down 🥹','Thương hết nước chấm 🫶','Không phải crush, là chốt luôn 😎','Say yes nha 💍','Hết nước chấm luôn á 🔥','Best couple của năm 🏆'];
 $('#mq').innerHTML=[...phrases,...phrases].map(p=>`<span>${p}</span>`).join('');
 
-const gifts=[['🍵','Trà'],['🍰','Bánh'],['🍎','Trái cây'],['🥂','Rượu vang'],['🕯️','Nến thơm'],['💍','Nhẫn'],['🧋','Trà sữa'],['🌹','Hoa hồng'],['🍫','Socola'],['🧸','Gấu bông'],['🏮','Đèn lồng'],['🐶','Boss chó']];
+const gifts=[['💍','Nhẫn cưới'],['💎','Nhẫn kim cương'],['🏠','Nhà'],['🚗','Ô tô'],['🍵','Trà'],['🍰','Bánh'],['🍎','Trái cây'],['🥂','Rượu vang'],['🕯️','Nến thơm'],['🧋','Trà sữa'],['🌹','Hoa hồng'],['🍫','Socola'],['🧸','Gấu bông'],['🐶','Boss chó']];
 const wishes=[['🏡','Nhà nhỏ'],['🐱','Boss mèo'],['🌴','Đi biển'],['🍳','Bếp chung'],['🎮','Game đôi'],['✈️','Du lịch'],['🌻','Vườn hoa'],['🚲','Đạp xe']];
 const flips=[['🍜','Nấu cơm cho nhau'],['🛏️','Nhường nhau chăn'],['📱','Nhắn tin liền tay'],['🎶','Hát chung mỗi tối']];
 const stops=[['☕','Gặp nhau lần đầu'],['🎬','Hẹn hò đầu tiên'],['🌅','Nói thương nhau'],['💍','Về chung nhà']];
+const big=['Nhẫn cưới','Nhẫn kim cương','Nhà','Ô tô'];
+const icon=(l,k)=>l.find(x=>x[1]===k)[0];
 
 function build(el,list,set,cb){
-  $(el).innerHTML=list.map(([e,t])=>`<button class="opt" data-k="${t}"><em>${e}</em>${t}</button>`).join('');
+  $(el).innerHTML=list.map(([e,t])=>`<button class="opt ${big.includes(t)?'big':''}" data-k="${t}"><em>${e}</em>${t}</button>`).join('');
   $(el).onclick=ev=>{const b=ev.target.closest('.opt');if(!b)return;const k=b.dataset.k;
     set.has(k)?set.delete(k):set.add(k);b.classList.toggle('sel',set.has(k));burst(ev.clientX,ev.clientY,['💖','✨','🌸']);cb()};
 }
-build('#gifts',gifts,st.gifts,()=>$('#cnt').textContent=st.gifts.size);
-build('#wishes',wishes,st.wishes,()=>{$('#future').textContent=[...st.wishes].map(k=>wishes.find(w=>w[1]===k)[0]).join(' ')});
+build('#gifts',gifts,st.gifts,()=>{$('#cnt').textContent=st.gifts.size;$('#tray').textContent=[...st.gifts].map(k=>icon(gifts,k)).join(' ')});
+build('#wishes',wishes,st.wishes,()=>{$('#future').textContent=[...st.wishes].map(k=>icon(wishes,k)).join(' ')});
 $('#flips').innerHTML=flips.map(([e,t])=>`<div class="flip"><div><p>${e}</p><p>${t}</p></div></div>`).join('');
 $('#flips').onclick=ev=>{const f=ev.target.closest('.flip');if(f){f.classList.toggle('f');burst(ev.clientX,ev.clientY,['💘','🌟'])}};
-$('#path').innerHTML=stops.map(([e,t])=>`<div class="stop"><i>${e}</i>${t}</div>`).join('');
+$('#path').innerHTML=stops.map(([e,t],i)=>`<div class="stop" style="--d:${i}"><i>${e}</i>${t}</div>`).join('');
 $('#path').onclick=ev=>{const s=ev.target.closest('.stop');if(s){s.classList.remove('pop');void s.offsetWidth;s.classList.add('pop');burst(ev.clientX,ev.clientY,['💕','✨'])}};
 
 /* ===== Điều hướng ===== */
@@ -178,54 +198,79 @@ function go(n){
   [...$('#dots').children].forEach((d,i)=>d.classList.toggle('on',i===n));
   $('#L').disabled=n===0;$('#R').disabled=n===pages.length-1;
   if(n===6)prep7();
-  if(n===0||n===3)burst(innerWidth/2,innerHeight/2,['💖','🌈','✨'],14);
+  if(n===0||n===3)burst(innerWidth/2,innerHeight/2,['💖','🌸','✨'],14);
 }
-$('#L').onclick=()=>go(cur-1);$('#R').onclick=()=>go(cur+1);
-$('#dots').onclick=e=>{if(e.target.dataset.i)go(+e.target.dataset.i)};
-addEventListener('keydown',e=>{if(/INPUT/.test(e.target.tagName))return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+$('#L').onclick=()=>go(cur-1);
+$('#R').onclick=()=>{if(cur===5&&!st.email)return $('#next6').click();go(cur+1)};
+$('#dots').onclick=e=>{if(e.target.dataset.i&&(+e.target.dataset.i<6||st.email))go(+e.target.dataset.i)};
+addEventListener('keydown',e=>{if(/INPUT/.test(e.target.tagName)||$('#modal').classList.contains('on'))return;if(e.key==='ArrowRight')$('#R').click();if(e.key==='ArrowLeft')go(cur-1)});
 let x0=null;
 addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});
-addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>70)go(cur+(d<0?1:-1));x0=null},{passive:true});
+addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>70&&!$('#modal').classList.contains('on')){d<0?$('#R').click():go(cur-1)}x0=null},{passive:true});
 
 /* ===== Hiệu ứng ===== */
-const fx=$('#fx'),hearts=['💖','💗','💕','🌸','✨','🫧','💞','🌈'];
+const fx=$('#fx'),hearts=['💖','💗','💕','🌸','✨','🫧','💞','🌷'];
 setInterval(()=>{const s=document.createElement('span');s.textContent=hearts[Math.random()*hearts.length|0];
   s.style.cssText=`left:${Math.random()*100}%;font-size:${14+Math.random()*26}px;animation-duration:${7+Math.random()*7}s;opacity:.8`;
   fx.appendChild(s);setTimeout(()=>s.remove(),14500)},450);
 function burst(x,y,set,n=9){for(let i=0;i<n;i++){const s=document.createElement('span');s.className='spark';
   s.textContent=set[Math.random()*set.length|0];
   s.style.cssText=`left:${x+(Math.random()-.5)*130}px;top:${y+(Math.random()-.5)*90}px;font-size:${18+Math.random()*18}px`;
-  document.body.appendChild(s);setTimeout(()=>s.remove(),800)}}
+  document.body.appendChild(s);setTimeout(()=>s.remove(),900)}}
 addEventListener('pointermove',e=>{if(Math.random()<.12)burst(e.clientX,e.clientY,['✨','💖'],1)});
-function confetti(){let t=0;const id=setInterval(()=>{burst(Math.random()*innerWidth,Math.random()*innerHeight*.7,['🎉','💖','🌈','🌸','✨','💍'],6);if(++t>18)clearInterval(id)},140)}
+function confetti(){let t=0;const id=setInterval(()=>{burst(Math.random()*innerWidth,Math.random()*innerHeight*.7,['🎉','💖','🌸','✨','💍','🎊'],6);if(++t>22)clearInterval(id)},140)}
 
-/* ===== Mail ===== */
+/* ===== Email ===== */
 const re=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 $('#next6').onclick=()=>{const v=$('#mail').value.trim();
   if(!re.test(v)){$('#err').textContent='Email chưa đúng, nhập lại nha 🥺';return}
   $('#err').textContent='';st.email=v;go(6)};
 $('#mail').onkeydown=e=>{if(e.key==='Enter')$('#next6').click()};
-const emo=(set,list)=>[...set].map(k=>list.find(x=>x[1]===k)[0]).join(' ')||'🤍';
-function prep7(){
-  $('#sum').innerHTML=`Sính lễ: ${emo(st.gifts,gifts)}<br>Tương lai: ${emo(st.wishes,wishes)}`;
-  $('#to').textContent='Gửi xác nhận tới: '+st.email;
+const chips=(set,l)=>[...set].map(k=>`<span>${icon(l,k)} ${k}</span>`).join('')||'<span>🤍 Chưa chọn</span>';
+function prep7(){$('#sg').innerHTML=chips(st.gifts,gifts);$('#sw').innerHTML=chips(st.wishes,wishes);$('#sm').textContent=st.email}
+
+/* ===== Hộp thoại "chắc chưa?" 2 bước ===== */
+const box=$('#box'),modal=$('#modal');
+function show(html){box.innerHTML=html}
+function step1(){
+  modal.classList.add('on');
+  show(`<div class="sticker">🥺</div><h2 class="love">Bin &amp; Bean chắc chưa?</h2><p>Chốt là thương nhau luôn đó nha</p>
+    <div class="acts"><button class="btn" id="y1">Chắc rồi! 💍</button><button class="btn ghost" id="n1">Để nghĩ lại</button></div>`);
+  let dodge=0;const n=$('#n1');
+  const run=()=>{if(dodge++<4){n.style.position='relative';n.style.transform=`translate(${(Math.random()-.5)*160}px,${(Math.random()-.5)*70}px)`}};
+  n.onpointerenter=run;n.onclick=close;
+  $('#y1').onclick=step2;
 }
-$('#send').onclick=async()=>{
-  const b=$('#send');b.disabled=true;$('#serr').textContent='';
-  const g=[...st.gifts].join(', ')||'(chưa chọn)',w=[...st.wishes].join(', ')||'(chưa chọn)';
+function step2(){
+  show(`<div class="sticker">😳</div><h2 class="love">Thật sự chắc 100%?</h2><p>Gửi đi là không rút lại được đâu nha 💌</p>
+    <div class="acts"><button class="btn" id="y2">Chắc 100%! 💖</button><button class="btn ghost" id="n2">Quay lại</button></div>`);
+  $('#n2').onclick=close;$('#y2').onclick=send;
+}
+function close(){modal.classList.remove('on')}
+$('#open').onclick=step1;
+modal.onclick=e=>{if(e.target===modal&&!box.querySelector('.env'))close()};
+
+async function send(){
+  show(`<div class="env">💌</div><h2 class="love">Đang bay thư…</h2><p>Chờ xíu nha</p>`);
+  const g=[...st.gifts].map(k=>icon(gifts,k)+' '+k).join(', ')||'Chưa chọn';
+  const w=[...st.wishes].map(k=>icon(wishes,k)+' '+k).join(', ')||'Chưa chọn';
   try{
     if(EMAILJS.service_id){
       const r=await fetch('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({...EMAILJS,template_params:{to_email:st.email,gifts:g,wishes:w}})});
+        body:JSON.stringify({service_id:EMAILJS.service_id,template_id:EMAILJS.template_id,user_id:EMAILJS.user_id,
+          template_params:{to_email:st.email,gifts:g,wishes:w,date:new Date().toLocaleDateString('vi-VN')}})});
       if(!r.ok)throw 0;
     }else{
-      const body=`Bin & Bean xác nhận! 💖\n\nSính lễ: ${g}\nTương lai: ${w}\n\nGét gô về chung nhà!`;
+      const body=`Bin & Bean xác nhận! 💖\n\nSính lễ: ${g}\nMai này: ${w}\n\nGét gô về chung nhà!`;
       location.href=`mailto:${encodeURIComponent(st.email)}?subject=${encodeURIComponent('Bin & Bean – Xác nhận 💍')}&body=${encodeURIComponent(body)}`;
     }
-    $('#p7a').style.display='none';$('#p7b').style.display='block';
-    $('#done').textContent='Mail xác nhận → '+st.email;confetti();
-  }catch(e){$('#serr').textContent='Gửi chưa được, thử lại nha 🥲';b.disabled=false}
-};
+    show(`<div class="ok">🥳</div><h2 class="love">Đã chốt!</h2><p>Thư xác nhận đã bay tới<br><b>${st.email.replace(/</g,'&lt;')}</b> 💌</p><div class="acts"><button class="btn" id="fin">Tuyệt vời 💖</button></div>`);
+    $('#fin').onclick=close;confetti();
+  }catch(e){
+    show(`<div class="sticker">🥲</div><h2 class="love">Chưa gửi được</h2><p>Kiểm tra mạng hoặc cấu hình EmailJS rồi thử lại nha</p><div class="acts"><button class="btn" id="re">Thử lại</button><button class="btn ghost" id="cl">Đóng</button></div>`);
+    $('#re').onclick=send;$('#cl').onclick=close;
+  }
+}
 go(0);
 </script>
 </body>
