@@ -3,624 +3,386 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khế Ước Đồng Hành — Bin & Bean</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <title>Khế Ước Đồng Hành Trọn Đời — Bin & Bean</title>
+  <!-- Google Fonts: Sang trọng, hoàng gia, hiện đại -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Canvas Confetti Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            roseWine: '#be185d',
+            roseDark: '#9d174d',
+            roseLight: '#ffe4ec',
+            roseSoft: '#fff1f5',
+            goldBorder: '#c5a059',
+            goldLight: '#f6e7c1',
+            inkText: '#1f2430'
+          },
+          fontFamily: {
+            cinzel: ['Cinzel', 'serif'],
+            playfair: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
-    :root {
-      --rose-50: #fff1f5;
-      --rose-100: #ffe4ec;
-      --rose-200: #fccedb;
-      --rose-400: #f4729f;
-      --rose-600: #db2764;
-      --rose-700: #be185d;
-      --gold-dark: #a17838;
-      --ink-navy: #1f2430;
-      --text-muted: #5d6474;
-      --card-bg: rgba(255, 255, 255, 0.95);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* Gradient nền lãng mạn tone hồng sáng hoàng gia */
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: radial-gradient(circle at 15% 15%, #ffe6ef 0%, #ffd0e0 45%, #ffb8cf 100%);
-      color: var(--ink-navy);
+      background: radial-gradient(circle at 10% 20%, #ffe9f2 0%, #ffd4e5 45%, #fec5dc 100%);
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px 12px;
+      color: #1f2430;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Hiệu ứng khung viền và họa tiết góc */
+    .royal-card {
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 25px 60px rgba(190, 24, 93, 0.16), 0 4px 15px rgba(197, 160, 89, 0.15);
+      border: 2px solid #ffd1df;
       position: relative;
     }
 
-    .contract-container {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 760px;
-      background: var(--card-bg);
-      border-radius: 28px;
-      box-shadow: 0 24px 60px rgba(190, 24, 93, 0.15);
-      border: 2px solid #ffd4e2;
-      padding: 38px 40px;
-    }
-
-    .corner-decor {
+    .corner-ornament {
       position: absolute;
       width: 24px;
       height: 24px;
-      border: 2px solid var(--rose-400);
+      border: 2px solid #c5a059;
       pointer-events: none;
     }
-    .top-l { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-    .top-r { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-    .bot-l { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-    .bot-r { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+    .c-top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+    .c-top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+    .c-bot-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+    .c-bot-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
-    .header { text-align: center; margin-bottom: 20px; }
-    .header .sub-badge {
-      display: inline-block;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--rose-700);
-      background: #ffe3ec;
-      padding: 6px 14px;
-      border-radius: 30px;
-      margin-bottom: 10px;
-    }
-    .header h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 26px;
-      letter-spacing: 1px;
-      color: var(--ink-navy);
-    }
-    .header p {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .step-indicator {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin: 16px 0 24px;
-    }
-    .dot {
-      width: 26px;
-      height: 4px;
-      border-radius: 4px;
-      background: #fcd0dc;
-      transition: all 0.3s;
-    }
-    .dot.active {
-      width: 44px;
-      background: var(--rose-600);
-    }
-
-    /* Các Bước (Steps) */
-    .step-content {
-      display: none;
-      min-height: 340px;
-    }
-    .step-content.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Bước 1 */
-    .party-grid {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 16px;
-      margin-top: 14px;
-    }
-    .profile-card {
-      background: #fff8fa;
-      border: 1.5px solid #fecdd6;
-      border-radius: 18px;
-      padding: 22px 16px;
-      text-align: center;
-    }
-    .avatar-icon {
-      font-size: 40px;
-      margin-bottom: 8px;
-    }
-    .profile-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      color: var(--rose-700);
-      margin-bottom: 4px;
-    }
-    .profile-card .tag {
-      font-size: 11px;
-      font-weight: 700;
-      color: #64748b;
-      text-transform: uppercase;
-    }
-    .profile-card p {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-    .ampersand {
-      font-family: 'Cinzel', serif;
-      font-size: 32px;
-      color: var(--gold-dark);
-      font-weight: 700;
-    }
-
-    /* Bước 2: Sính lễ */
-    .tribute-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .tribute-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      background: #ffffff;
-      border: 1.5px solid #f9ced8;
-      border-radius: 12px;
+    /* Thẻ sính lễ có trạng thái active */
+    .tribute-box {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
       user-select: none;
-      transition: all 0.2s;
     }
-    .tribute-item:hover {
-      border-color: var(--rose-400);
-      background: #fff9fb;
+    .tribute-box.selected {
+      border-color: #be185d !important;
+      background-color: #ffeef4 !important;
+      box-shadow: 0 6px 18px rgba(190, 24, 93, 0.15);
+      transform: translateY(-2px);
     }
-    .tribute-item.selected {
-      border-color: var(--rose-600);
-      background: #ffe9f0;
-      box-shadow: 0 3px 10px rgba(219, 39, 100, 0.12);
-    }
-    .tribute-img {
-      width: 48px;
-      height: 48px;
-      border-radius: 8px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-    .tribute-info h4 { font-size: 13px; font-weight: 700; }
-    .tribute-info span { font-size: 11px; color: var(--text-muted); }
-
-    /* Bước 3: Điều khoản */
-    .covenant-box {
-      background: #fffafb;
-      border: 1px solid #fcd4de;
-      border-radius: 16px;
-      padding: 20px;
-    }
-    .covenant-item {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 14px;
-      line-height: 1.6;
-      font-size: 13.5px;
-    }
-    .covenant-item:last-child { margin-bottom: 0; }
-    .cov-num {
-      background: #ffe3ec;
-      color: var(--rose-600);
-      font-weight: 700;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 12px;
+    .tribute-box.selected .check-indicator {
+      background-color: #be185d;
+      color: #ffffff;
+      border-color: #be185d;
     }
 
-    /* Bước 4: Email */
-    .form-group { margin: 18px 0; }
-    .form-label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    .input-field {
-      width: 100%;
-      padding: 13px 16px;
-      border-radius: 10px;
-      border: 1.5px solid #fecdd6;
-      font-size: 14px;
-      outline: none;
-    }
-    .input-field:focus {
-      border-color: var(--rose-600);
-      box-shadow: 0 0 0 3px rgba(219, 39, 100, 0.15);
-    }
-
-    /* Bước 5: Ấn chứng */
-    .seal-stage { text-align: center; padding: 16px 0; }
+    /* Con dấu niêm phong Wax Seal */
     .wax-seal {
-      width: 80px;
-      height: 80px;
-      margin: 0 auto 16px;
-      background: radial-gradient(circle, #db2764 0%, #9d174d 100%);
+      width: 90px;
+      height: 90px;
+      margin: 0 auto;
       border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #e11d48, #9f1239, #881337);
+      box-shadow: 0 12px 28px rgba(159, 18, 57, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -4px 6px rgba(0, 0, 0, 0.3);
+      border: 3px double #f6e7c1;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 20px rgba(157, 23, 77, 0.35);
-      border: 3px solid #ffccd9;
       color: #fff;
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
       cursor: pointer;
+      transition: transform 0.2s ease;
     }
-
-    /* Thanh Điều Hướng */
-    .nav-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 28px;
-      padding-top: 18px;
-      border-top: 1px solid #ffdbe6;
-    }
-    .nav-btn {
-      min-width: 110px;
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-size: 13.5px;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      user-select: none;
-      transition: all 0.2s;
-    }
-    .btn-prev {
-      background: #ffe3ec;
-      color: var(--rose-700);
-      display: none; /* Ban đầu ẩn ở bước 1 */
-    }
-    .btn-prev:hover { background: #ffd0de; }
-    .btn-next {
-      background: linear-gradient(135deg, var(--rose-600), var(--rose-700));
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(219, 39, 100, 0.25);
-    }
-    .btn-next:hover { transform: translateY(-1px); }
-    .btn-submit {
-      background: #059669;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .status-msg {
-      margin-top: 15px;
-      padding: 12px;
-      border-radius: 8px;
-      font-size: 13px;
-      display: none;
-    }
-    .status-success {
-      background: #ecfdf5;
-      color: #065f46;
-      border: 1px solid #a7f3d0;
-      display: block;
-    }
-    .status-error {
-      background: #fef2f2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
-      display: block;
-    }
-
-    @media (max-width: 600px) {
-      .contract-container { padding: 26px 16px; }
-      .party-grid, .tribute-grid { grid-template-columns: 1fr; }
-      .ampersand { display: none; }
+    .wax-seal:hover {
+      transform: scale(1.06);
     }
   </style>
 </head>
-<body>
+<body class="flex items-center justify-center p-3 sm:p-6 md:p-10">
 
-  <div class="contract-container">
-    <div class="corner-decor top-l"></div>
-    <div class="corner-decor top-r"></div>
-    <div class="corner-decor bot-l"></div>
-    <div class="corner-decor bot-r"></div>
+  <main class="royal-card w-full max-w-3xl rounded-3xl p-6 sm:p-10 z-10">
+    <!-- 4 góc hoa văn phong cách khế ước -->
+    <div class="corner-ornament c-top-left"></div>
+    <div class="corner-ornament c-top-right"></div>
+    <div class="corner-ornament c-bot-left"></div>
+    <div class="corner-ornament c-bot-right"></div>
 
-    <div class="header">
-      <span class="sub-badge">Văn Bản Minh Ước Đồng Hành</span>
-      <h1>Khế Ước Bin &amp; Bean</h1>
-      <p>Thiết lập trên nền tảng thấu hiểu, tự nguyện và son sắt</p>
-    </div>
-
-    <!-- Thanh tiến trình -->
-    <div class="step-indicator">
-      <div class="dot active" id="dot-1"></div>
-      <div class="dot" id="dot-2"></div>
-      <div class="dot" id="dot-3"></div>
-      <div class="dot" id="dot-4"></div>
-      <div class="dot" id="dot-5"></div>
-    </div>
-
-    <!-- BƯỚC 1: GIỚI THIỆU -->
-    <div class="step-content active" id="step-1">
-      <div class="party-grid">
-        <div class="profile-card">
-          <div class="avatar-icon">🤵🏻‍♂️</div>
-          <h3>Bin</h3>
-          <span class="tag">Bên Khởi Lập (Boy)</span>
-          <p>Cam kết bảo vệ, tôn trọng và làm điểm tựa vững chãi trong mọi thăng trầm.</p>
-        </div>
-
-        <div class="ampersand">&amp;</div>
-
-        <div class="profile-card">
-          <div class="avatar-icon">🤵🏽‍♂️</div>
-          <h3>Bean</h3>
-          <span class="tag">Bên Đồng Hiệp (Boy)</span>
-          <p>Cam kết cùng sẻ chia, chung tay xây đắp tương lai và đồng hành trọn đời.</p>
-        </div>
+    <!-- Header Tiêu Đề Nghiêm Túc & Lãng Mạn -->
+    <header class="text-center mb-6 border-b border-pink-200 pb-5">
+      <div class="inline-block bg-pink-100 border border-pink-200 text-roseWine px-4 py-1 rounded-full text-xs font-semibold tracking-widest uppercase mb-2">
+        Văn Kiện Đồng Hành Trọn Đời
       </div>
-      <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 24px;">
-        Hai cá nhân độc lập, tự do, cùng bước vào một giao kết trọn vẹn của cuộc đời.
-      </p>
-    </div>
-
-    <!-- BƯỚC 2: SÍNH LỄ -->
-    <div class="step-content" id="step-2">
-      <h3 style="font-size: 16px; margin-bottom: 6px; color: var(--rose-700);">Danh Mục Sính Lễ &amp; Lễ Vật Giao Kết</h3>
-      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px;">Nhấp vào để chọn hoặc bỏ chọn:</p>
-      
-      <div class="tribute-grid">
-        <div class="tribute-item selected" data-name="Vàng Ròng 9999">
-          <img class="tribute-img" src="https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=200&q=80" alt="Vàng" />
-          <div class="tribute-info">
-            <h4>Kim Bảo 9999</h4>
-            <span>Biểu trưng giá trị vững bền</span>
-          </div>
-        </div>
-
-        <div class="tribute-item selected" data-name="Nhẫn Đôi Kim Cương">
-          <img class="tribute-img" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=200&q=80" alt="Nhẫn" />
-          <div class="tribute-info">
-            <h4>Nhẫn Đôi Đồng Tâm</h4>
-            <span>Gắn kết định tình vĩnh cửu</span>
-          </div>
-        </div>
-
-        <div class="tribute-item selected" data-name="Phương Tiện / Xe Cộ">
-          <img class="tribute-img" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=200&q=80" alt="Xe" />
-          <div class="tribute-info">
-            <h4>Phương Tiện Chung Đôi</h4>
-            <span>Đưa nhau qua muôn nẻo đường</span>
-          </div>
-        </div>
-
-        <div class="tribute-item selected" data-name="Minh Bạch Tài Chính">
-          <img class="tribute-img" src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=200&q=80" alt="Tài chính" />
-          <div class="tribute-info">
-            <h4>Minh Bạch Tài Chính</h4>
-            <span>Ngân sách phát triển tương lai</span>
-          </div>
-        </div>
-
-        <div class="tribute-item selected" data-name="Tự Do & Tin Cậy">
-          <img class="tribute-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Tự do" />
-          <div class="tribute-info">
-            <h4>Tự Do &amp; Tin Cậy</h4>
-            <span>Tôn trọng không gian riêng của nhau</span>
-          </div>
-        </div>
-
-        <div class="tribute-item selected" data-name="Bếp Ấm & Trách Nhiệm Sẻ Chia">
-          <img class="tribute-img" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=200&q=80" alt="Bếp ấm" />
-          <div class="tribute-info">
-            <h4>Hơi Ấm Gian Bếp</h4>
-            <span>Cùng nấu nướng và gánh vác việc nhà</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BƯỚC 3: ĐIỀU KHOẢN -->
-    <div class="step-content" id="step-3">
-      <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--rose-700);">Các Điều Khoản Giao Ước Bất Khả Hủy</h3>
-      <div class="covenant-box">
-        <div class="covenant-item">
-          <div class="cov-num">I</div>
-          <div><strong>Bình Đẳng &amp; Minh Bạch:</strong> Mọi quyết định trọng đại về tài chính, chỗ ở và công việc đều có sự đồng thuận từ cả hai.</div>
-        </div>
-        <div class="covenant-item">
-          <div class="cov-num">II</div>
-          <div><strong>Nguyên Tắc Bất Hòa Không Quá 24H:</strong> Không để sự bất đồng vượt qua một ngày đêm. Luôn tôn trọng và thẳng thắn lắng nghe.</div>
-        </div>
-        <div class="covenant-item">
-          <div class="cov-num">III</div>
-          <div><strong>Đồng Cam Cộng Khổ:</strong> Luôn làm chỗ dựa kiên định khi người kia gặp khó khăn hay biến cố.</div>
-        </div>
-        <div class="covenant-item">
-          <div class="cov-num">IV</div>
-          <div><strong>Hiệu Lực Vĩnh Viễn:</strong> Khế ước có giá trị từ giây phút ấn ký, không chấp nhận việc bội ước.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BƯỚC 4: NHẬP EMAIL -->
-    <div class="step-content" id="step-4">
-      <h3 style="font-size: 16px; margin-bottom: 6px; color: var(--rose-700);">Lưu Bản Giao Kết Điện Tử</h3>
-      <p style="font-size: 13px; color: var(--text-muted);">
-        Nhập địa chỉ email để lưu trữ chứng thư điện tử:
+      <h1 class="font-cinzel text-2xl sm:text-3xl text-gray-900 font-bold tracking-wide">
+        Khế Ước Đồng Hành: Bin &amp; Bean
+      </h1>
+      <p class="font-playfair italic text-gray-500 text-sm mt-1">
+        Xác lập minh định — Bất khả phân ly — Trọn đời tương trợ
       </p>
 
-      <div class="form-group">
-        <label class="form-label" for="partnerEmail">Email tiếp nhận hợp đồng:</label>
-        <input type="email" id="partnerEmail" class="input-field" placeholder="vd: bin.bean@gmail.com" />
+      <!-- Thanh tiến trình Journey dots -->
+      <div class="flex items-center justify-center gap-2 mt-5">
+        <div id="dot-1" class="h-2 rounded-full transition-all duration-300 w-8 bg-roseWine"></div>
+        <div id="dot-2" class="h-2 rounded-full transition-all duration-300 w-3 bg-pink-200"></div>
+        <div id="dot-3" class="h-2 rounded-full transition-all duration-300 w-3 bg-pink-200"></div>
+        <div id="dot-4" class="h-2 rounded-full transition-all duration-300 w-3 bg-pink-200"></div>
+        <div id="dot-5" class="h-2 rounded-full transition-all duration-300 w-3 bg-pink-200"></div>
+      </div>
+    </header>
+
+    <!-- BƯỚC 1: GIỚI THIỆU 2 CHỦ THỂ (CẢ 2 ĐỀU LÀ BOY) -->
+    <section id="step-1" class="step-view" style="display: block;">
+      <div class="grid grid-cols-1 md:grid-cols-7 items-center gap-4 my-4">
+        <!-- Bên A: Bin -->
+        <div class="md:col-span-3 bg-pink-50/70 border border-pink-200 rounded-2xl p-5 text-center">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-rose-100 border-2 border-rose-300 flex items-center justify-center text-3xl">
+            🤵🏻‍♂️
+          </div>
+          <h2 class="font-playfair text-xl font-bold text-roseWine">BIN</h2>
+          <span class="inline-block text-[11px] font-bold text-gray-500 uppercase tracking-wider mt-0.5">Bên Khởi Lập (Boy)</span>
+          <p class="text-xs text-gray-600 leading-relaxed mt-2.5">
+            Nguyện làm tấm khiên che chắn giông bão, điểm tựa lý trí và nguồn động viên kiên định trong mọi chặng đường.
+          </p>
+        </div>
+
+        <!-- Biểu tượng liên kết vĩnh cửu -->
+        <div class="md:col-span-1 text-center py-1">
+          <span class="font-cinzel text-2xl font-bold text-goldBorder block">&amp;</span>
+          <span class="text-xs text-pink-400 font-semibold uppercase tracking-wider">Đồng Tâm</span>
+        </div>
+
+        <!-- Bên B: Bean -->
+        <div class="md:col-span-3 bg-pink-50/70 border border-pink-200 rounded-2xl p-5 text-center">
+          <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-rose-100 border-2 border-rose-300 flex items-center justify-center text-3xl">
+            🤵🏽‍♂️
+          </div>
+          <h2 class="font-playfair text-xl font-bold text-roseWine">BEAN</h2>
+          <span class="inline-block text-[11px] font-bold text-gray-500 uppercase tracking-wider mt-0.5">Bên Đồng Hiệp (Boy)</span>
+          <p class="text-xs text-gray-600 leading-relaxed mt-2.5">
+            Nguyện làm ngọn lửa sưởi ấm gia đình, cùng chung vai gánh vác, sẻ chia chí hướng và yêu thương son sắt.
+          </p>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label class="form-label" for="customNote">Lời nhắn gửi (Tùy chọn):</label>
-        <textarea id="customNote" class="input-field" rows="3" placeholder="Gửi gắm lời cam kết đến đối phương..."></textarea>
+      <div class="bg-white border-l-4 border-goldBorder p-4 rounded-r-xl shadow-sm text-xs sm:text-sm text-gray-700 leading-relaxed mt-6">
+        <strong>Tuyên bố khởi sự:</strong> Hai đấng nam nhi, tự do, thấu cảm và độc lập, long trọng ấn định mối quan hệ đồng hành bình đẳng, biến ước nguyện thành giao ước đời đời.
       </div>
-    </div>
+    </section>
 
-    <!-- BƯỚC 5: ẤN CHỨNG -->
-    <div class="step-content" id="step-5">
-      <div class="seal-stage">
-        <div class="wax-seal" id="sealButton">B&amp;B</div>
-        <h3 style="font-size: 18px; margin-bottom: 6px;">Niêm Phong Ấn Ký</h3>
-        <p style="font-size: 13.5px; color: var(--text-muted); max-width: 440px; margin: 0 auto 16px;">
-          Bấm nút bên dưới để hoàn tất việc xác nhận khế ước và gửi thông báo điện tử.
+    <!-- BƯỚC 2: CHỌN SÍNH LỄ & BẢO VẬT -->
+    <section id="step-2" class="step-view" style="display: none;">
+      <div class="text-center mb-4">
+        <h2 class="font-playfair text-lg font-bold text-roseWine">Danh Mục Sính Lễ &amp; Lễ Vật Định Tình</h2>
+        <p class="text-xs text-gray-500">Nhấp chọn các bảo vật vật chất và tinh thần trao gửi đối phương:</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[360px] overflow-y-auto pr-1">
+        <!-- Vàng 9999 -->
+        <div class="tribute-box selected flex items-center gap-3 p-3 bg-white border border-pink-200 rounded-xl" data-name="Kim Bảo 9999 (Vàng Ròng)">
+          <img src="https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=150&q=80" alt="Vàng" class="w-14 h-14 rounded-lg object-cover border border-pink-100 flex-shrink-0" />
+          <div class="flex-grow">
+            <h3 class="text-xs font-bold text-gray-900">Kim Bảo 9999</h3>
+            <p class="text-[11px] text-gray-500">Vàng ròng trường tồn, giá trị vững bền theo năm tháng.</p>
+          </div>
+          <div class="check-indicator w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-[10px] font-bold">✓</div>
+        </div>
+
+        <!-- Nhẫn kim cương -->
+        <div class="tribute-box selected flex items-center gap-3 p-3 bg-white border border-pink-200 rounded-xl" data-name="Nhẫn Đôi Kim Cương Khắc Tên">
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=150&q=80" alt="Nhẫn" class="w-14 h-14 rounded-lg object-cover border border-pink-100 flex-shrink-0" />
+          <div class="flex-grow">
+            <h3 class="text-xs font-bold text-gray-900">Nhẫn Đôi Kim Cương</h3>
+            <p class="text-[11px] text-gray-500">Kỷ vật đính ước, khắc ghi danh xưng Bin &amp; Bean.</p>
+          </div>
+          <div class="check-indicator w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-[10px] font-bold">✓</div>
+        </div>
+
+        <!-- Phương tiện xe cộ -->
+        <div class="tribute-box selected flex items-center gap-3 p-3 bg-white border border-pink-200 rounded-xl" data-name="Phương Tiện Di Chuyển Đồng Hành">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=150&q=80" alt="Xe" class="w-14 h-14 rounded-lg object-cover border border-pink-100 flex-shrink-0" />
+          <div class="flex-grow">
+            <h3 class="text-xs font-bold text-gray-900">Phương Tiện Chung Đôi</h3>
+            <p class="text-[11px] text-gray-500">Đồng hành qua mọi dặm đường xa của cuộc đời.</p>
+          </div>
+          <div class="check-indicator w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-[10px] font-bold">✓</div>
+        </div>
+
+        <!-- Quỹ tài chính -->
+        <div class="tribute-box selected flex items-center gap-3 p-3 bg-white border border-pink-200 rounded-xl" data-name="Ngân Sách & Quỹ Tài Chính Hạnh Phúc">
+          <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=150&q=80" alt="Tài chính" class="w-14 h-14 rounded-lg object-cover border border-pink-100 flex-shrink-0" />
+          <div class="flex-grow">
+            <h3 class="text-xs font-bold text-gray-900">Minh Bạch Tài Chính</h3>
+            <p class="text-[11px] text-gray-500">Quỹ chung đầu tư vững vàng cho tương lai ấm no.</p>
+          </div>
+          <div class="check-indicator w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-[10px] font-bold">✓</div>
+        </div>
+
+        <!-- Tự do & Tin cậy -->
+        <div class="tribute-box selected flex items-center gap-3 p-3 bg-white border border-pink-200 rounded-xl" data-name="Sự Tự Do & Lòng Tin Cậy Tuyệt Đối">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80" alt="Tự do" class="w-14 h-14 rounded-lg object-cover border border-pink-100 flex-shrink-0" />
+          <div class="flex-grow">
+            <h3 class="text-xs font-bold text-gray-900">Tự Do &amp; Tin Cậy</h3>
+            <p class="text-[11px] text-gray-500">Tôn trọng cá tính và không gian riêng của nhau.</p>
+          </div>
+          <div class="check-indicator w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-[10px] font-bold">✓</div>
+        </div>
+
+        <!-- Bếp ấm sẻ chia -->
+        <div class="tribute-box selected flex items-center gap-3 p-3 bg-white border border-pink-200 rounded-xl" data-name="Bếp Ấm & Trách Nhiệm Sẻ Chia Việc Nhà">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=150&q=80" alt="Bữa cơm" class="w-14 h-14 rounded-lg object-cover border border-pink-100 flex-shrink-0" />
+          <div class="flex-grow">
+            <h3 class="text-xs font-bold text-gray-900">Hơi Ấm Gian Bếp</h3>
+            <p class="text-[11px] text-gray-500">Cùng nấu nướng, không đùn đẩy việc gia đình.</p>
+          </div>
+          <div class="check-indicator w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-[10px] font-bold">✓</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BƯỚC 3: CÁC ĐIỀU KHOẢN GIAO ƯỚC BẤT KHẢ HỦY -->
+    <section id="step-3" class="step-view" style="display: none;">
+      <div class="text-center mb-4">
+        <h2 class="font-playfair text-lg font-bold text-roseWine">Các Điều Khoản Khế Ước Bất Khả Hủy</h2>
+        <p class="text-xs text-gray-500">Bốn nguyên tắc danh dự điều phối cuộc sống chung:</p>
+      </div>
+
+      <div class="space-y-3 bg-pink-50/50 border border-pink-200 rounded-2xl p-5">
+        <div class="flex items-start gap-3">
+          <span class="w-6 h-6 rounded-full bg-roseWine text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">I</span>
+          <div>
+            <h4 class="text-xs font-bold text-gray-900">Bình Đẳng &amp; Tôn Trọng Ý Nguyện</h4>
+            <p class="text-xs text-gray-600 mt-0.5">Mọi quyết định quan trọng (nhà cửa, tài chính, sự nghiệp) đều phải thảo luận cởi mở và đạt đồng thuận từ cả Bin và Bean.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 border-t border-pink-100 pt-3">
+          <span class="w-6 h-6 rounded-full bg-roseWine text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">II</span>
+          <div>
+            <h4 class="text-xs font-bold text-gray-900">Quy Tắc Giận Hờn Không Quá 24 Giờ</h4>
+            <p class="text-xs text-gray-600 mt-0.5">Tuyệt đối không dùng chiến tranh lạnh. Bất hòa phải được đối thoại chân thành, cùng giải quyết trước khi ngày mới bắt đầu.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 border-t border-pink-100 pt-3">
+          <span class="w-6 h-6 rounded-full bg-roseWine text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">III</span>
+          <div>
+            <h4 class="text-xs font-bold text-gray-900">Đồng Cam Cộng Khổ &amp; Tương Trợ</h4>
+            <p class="text-xs text-gray-600 mt-0.5">Lúc khó khăn hay lúc thịnh vượng đều chung vai sát cánh; không bao giờ buông tay hay bỏ rơi người kia khi gặp nghịch cảnh.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3 border-t border-pink-100 pt-3">
+          <span class="w-6 h-6 rounded-full bg-roseWine text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">IV</span>
+          <div>
+            <h4 class="text-xs font-bold text-gray-900">Cam Kết Chung Thủy &amp; Hiệu Lực Vĩnh Viễn</h4>
+            <p class="text-xs text-gray-600 mt-0.5">Khế ước thiết lập trên danh dự của hai người đàn ông, có giá trị vĩnh cửu và không cho phép đơn phương bội ước.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BƯỚC 4: NHẬP EMAIL TIẾP NHẬN HỢP ĐỒNG -->
+    <section id="step-4" class="step-view" style="display: none;">
+      <div class="text-center mb-5">
+        <h2 class="font-playfair text-lg font-bold text-roseWine">Lưu Trữ Khế Ước Điện Tử</h2>
+        <p class="text-xs text-gray-500">Vui lòng cung cấp email để nhận bản chứng thư chính thức sau khi ký:</p>
+      </div>
+
+      <div class="space-y-4 max-w-lg mx-auto">
+        <div>
+          <label for="inputEmail" class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
+            Địa Chỉ Email Nhận Khế Ước <span class="text-roseWine">*</span>
+          </label>
+          <input 
+            type="email" 
+            id="inputEmail" 
+            placeholder="vd: bin.bean@gmail.com"
+            class="w-full px-4 py-3 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-roseWine/40 bg-white text-sm"
+          />
+          <p id="emailErrorMsg" class="text-xs text-red-600 mt-1 hidden font-medium">⚠️ Vui lòng nhập đúng định dạng email (ví dụ: tenban@gmail.com)</p>
+        </div>
+
+        <div>
+          <label for="inputVow" class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-1">
+            Lời Nhắn Nhủ Riêng Biệt (Tùy Chọn)
+          </label>
+          <textarea 
+            id="inputVow" 
+            rows="3" 
+            placeholder="Ghi lời thề riêng gửi tới người đồng hành của bạn..."
+            class="w-full px-4 py-3 rounded-xl border border-pink-300 focus:outline-none focus:ring-2 focus:ring-roseWine/40 bg-white text-sm resize-none"
+          ></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- BƯỚC 5: ẤN CHỨNG & XÁC NHẬN GỬI MAIL -->
+    <section id="step-5" class="step-view" style="display: none;">
+      <div class="text-center py-2">
+        <!-- Con dấu hoàng gia Wax Seal -->
+        <div id="sealTrigger" class="wax-seal group" title="Nhấn để ấn chứng">
+          <span class="font-cinzel text-lg font-bold tracking-widest">B&amp;B</span>
+          <span class="text-[9px] font-semibold uppercase tracking-wider text-amber-200">SEAL</span>
+        </div>
+
+        <h3 class="font-playfair text-xl font-bold text-gray-900 mt-4">Niêm Phong Khế Ước Hoàng Gia</h3>
+        <p class="text-xs text-gray-600 max-w-md mx-auto mt-1 leading-relaxed">
+          Nhấn vào <strong>Con Dấu B&amp;B</strong> hoặc bấm nút <strong>XÁC NHẬN &amp; GỬI EMAIL</strong> bên dưới để hoàn tất nghi thức và chuyển phát bản giao ước.
         </p>
 
-        <button type="button" class="btn-submit" id="btnFinalSend">
-          📜 Xác Nhận &amp; Gửi Email
+        <!-- Nút gửi chính -->
+        <button 
+          id="btnConfirmSend" 
+          type="button" 
+          class="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:from-emerald-500 hover:to-teal-600 transition-all text-sm tracking-wide"
+        >
+          <span>📜</span> XÁC NHẬN &amp; GỬI EMAIL NGAY
         </button>
 
-        <div id="statusResult" class="status-msg"></div>
+        <!-- Hộp phản hồi & Liên kết Fallback Mailto -->
+        <div id="resultBox" class="mt-5 p-4 rounded-xl text-xs max-w-lg mx-auto text-left hidden"></div>
       </div>
-    </div>
+    </section>
 
     <!-- THANH ĐIỀU HƯỚNG NÚT < VÀ > -->
-    <div class="nav-bar">
-      <button type="button" class="nav-btn btn-prev" id="btnPrev">&lt; Quay Lại</button>
-      <span id="stepCounter" style="font-size: 12.5px; font-weight: 600; color: var(--text-muted);">Giai đoạn 1 / 5</span>
-      <button type="button" class="nav-btn btn-next" id="btnNext">Tiếp Tục &gt;</button>
-    </div>
-  </div>
+    <footer class="flex items-center justify-between border-t border-pink-200 mt-8 pt-5">
+      <button 
+        id="btnPrev" 
+        type="button" 
+        class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-pink-100 hover:bg-pink-200 text-roseWine font-bold text-xs sm:text-sm transition-all invisible"
+      >
+        <span>&lt;</span> Quay Lại
+      </button>
+
+      <span id="stepCounterText" class="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+        Giai Đoạn 1 / 5
+      </span>
+
+      <button 
+        id="btnNext" 
+        type="button" 
+        class="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-xl bg-gradient-to-r from-roseWine to-roseDark hover:brightness-110 text-white font-bold text-xs sm:text-sm shadow-md transition-all"
+      >
+        Tiếp Tục <span>&gt;</span>
+      </button>
+    </footer>
+  </main>
 
   <script>
-    // Khởi tạo trạng thái
+    // Khởi tạo biến trạng thái toàn cục
     let currentStep = 1;
-    const totalSteps = 5;
+    const TOTAL_STEPS = 5;
 
+    // Lấy các tham chiếu phần tử DOM chính
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
-    const stepCounter = document.getElementById('stepCounter');
-    const btnFinalSend = document.getElementById('btnFinalSend');
-    const sealButton = document.getElementById('sealButton');
-
-    // Hàm cập nhật giao diện khi chuyển bước
-    function updateStepView() {
-      // Ẩn tất cả các bước
-      for (let i = 1; i <= totalSteps; i++) {
-        const stepEl = document.getElementById(`step-${i}`);
-        const dotEl = document.getElementById(`dot-${i}`);
-        if (stepEl) stepEl.classList.remove('active');
-        if (dotEl) dotEl.classList.remove('active');
-      }
-
-      // Hiện bước hiện tại
-      const curStepEl = document.getElementById(`step-${currentStep}`);
-      const curDotEl = document.getElementById(`dot-${currentStep}`);
-      if (curStepEl) curStepEl.classList.add('active');
-      if (curDotEl) curDotEl.classList.add('active');
-
-      // Cập nhật text đếm
-      stepCounter.textContent = `Giai đoạn ${currentStep} / ${totalSteps}`;
-
-      // Ẩn/Hiện nút quay lại
-      btnPrev.style.display = (currentStep === 1) ? 'none' : 'block';
-
-      // Ẩn/Hiện nút tiếp tục
-      btnNext.style.display = (currentStep === totalSteps) ? 'none' : 'block';
-    }
-
-    // Sự kiện nút TIẾP TỤC (>)
-    btnNext.addEventListener('click', function() {
-      if (currentStep === 4) {
-        const emailVal = document.getElementById('partnerEmail').value.trim();
-        if (!emailVal || !emailVal.includes('@')) {
-          alert('Vui lòng nhập một địa chỉ email hợp lệ trước khi tiếp tục!');
-          return;
-        }
-      }
-
-      if (currentStep < totalSteps) {
-        currentStep++;
-        updateStepView();
-      }
-    });
-
-    // Sự kiện nút QUAY LẠI (<)
-    btnPrev.addEventListener('click', function() {
-      if (currentStep > 1) {
-        currentStep--;
-        updateStepView();
-      }
-    });
-
-    // Chọn / Bỏ chọn sính lễ
-    document.querySelectorAll('.tribute-item').forEach(item => {
-      item.addEventListener('click', function() {
-        this.classList.toggle('selected');
-      });
-    });
-
-    // Xử lý gửi hợp đồng
-    async function handleSendContract() {
-      const email = document.getElementById('partnerEmail').value.trim();
-      const note = document.getElementById('customNote').value.trim() || 'Trọn đời son sắt.';
-      const statusBox = document.getElementById('statusResult');
-
-      if (!email || !email.includes('@')) {
-        alert('Vui lòng quay lại bước 4 để nhập email hợp lệ!');
-        return;
-      }
-
-      // Lấy danh sách sính lễ đã chọn
-      const selected = [];
-      document.querySelectorAll('.tribute-item.selected').forEach(el => {
-        selected.push(el.getAttribute('data-name'));
-      });
-
-      btnFinalSend.disabled = true;
-      btnFinalSend.textContent = 'Đang niêm phong...';
-
-      const payload = {
-        title: "KHẾ ƯỚC ĐỒNG HÀNH: BIN & BEAN",
-        parties: "Bin (Boy) & Bean (Boy)",
-        recipient_email: email,
-        tributes: selected.join(', '),
-        message: note,
-        contract_id: "BB-" + Math.floor(100000 + Math.random() * 900000),
-        signed_at: new Date().toLocaleString('vi-VN')
-      };
-
-      try {
-        // Gửi ngầm qua Formspree API
-        const res = await fetch("https://formspree.io/f/mblgzvdq", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(payload)
-        });
-
-        if (window.confetti) {
-          window.confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-        }
-
-        statusBox.className = 'status-msg status-success';
-        statusBox.innerHTML = `
-          🎉 <strong>ĐÃ NIÊM PHONG & GỬI THÀNH CÔNG!</strong><br/>
-          Mã khế ước <strong>#${payload.contract_id}</strong> đã được gửi tới <u>${email}</u>.
-        `;
-        btnFinalSend.textContent = '✓ Hoàn Tất Giao Ước';
-      } catch (err) {
-        status
+    const stepCounterText = document.getElementById('stepCounterText');
+    const inputEmail = document.getElementById('inputEmail');
+    const emailErrorMsg = document.getElementById('emailErrorMsg');
+    const btnConfirmSend = docume
