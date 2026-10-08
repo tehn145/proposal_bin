@@ -260,10 +260,7 @@ async function send(){
         body:JSON.stringify({service_id:EMAILJS.service_id,template_id:EMAILJS.template_id,user_id:EMAILJS.user_id,
           template_params:{to_email:st.email,gifts:g,wishes:w,date:new Date().toLocaleDateString('vi-VN')}})});
       if(!r.ok)throw 0;
-    }else{
-      const body=`Bin & Bean xác nhận! 💖\n\nSính lễ: ${g}\nMai này: ${w}\n\nGét gô về chung nhà!`;
-      location.href=`mailto:${encodeURIComponent(st.email)}?subject=${encodeURIComponent('Bin & Bean – Xác nhận 💍')}&body=${encodeURIComponent(body)}`;
-    }
+    }else throw 0;
     show(`<div class="ok">🥳</div><h2 class="love">Đã chốt!</h2><p>Thư xác nhận đã bay tới<br><b>${st.email.replace(/</g,'&lt;')}</b> 💌</p><div class="acts"><button class="btn" id="fin">Tuyệt vời 💖</button></div>`);
     $('#fin').onclick=close;confetti();
   }catch(e){
