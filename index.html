@@ -312,5 +312,330 @@
       height: 86px;
       margin: 0 auto 16px;
       background: radial-gradient(circle, #db2764 0%, #9d174d 100%);
-      border-radius: 50
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(157, 23, 77, 0.4), inset 0 -3px 8px rgba(0, 0, 0, 0.25);
+      border: 3px solid #ffccd9;
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: 26px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .wax-seal:hover {
+      transform: scale(1.05);
+    }
+    .seal-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid #ffdbe6;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 105px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+    .btn-prev {
+      background: #ffe3ec;
+      color: var(--rose-700);
+    }
+    .btn-prev:hover {
+      background: #ffd0de;
+    }
+    .btn-next {
+      background: linear-gradient(135deg, var(--rose-600) 0%, var(--rose-700) 100%);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(219, 39, 100, 0.25);
+    }
+    .btn-next:hover {
+      box-shadow: 0 8px 22px rgba(219, 39, 100, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-submit {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #fff;
+      font-weight: 700;
+      padding: 14px 28px;
+    }
+
+    /* Modal / Alert thông báo gửi */
+    .status-msg {
+      margin-top: 14px;
+      font-size: 13px;
+      padding: 10px;
+      border-radius: 8px;
+      display: none;
+    }
+    .status-success {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      display: block;
+    }
+    .status-error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      display: block;
+    }
+
+    @media (max-width: 650px) {
+      .contract-container { padding: 30px 18px; }
+      .party-grid { grid-template-columns: 1fr; }
+      .ampersand { display: none; }
+      .tribute-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+
+  <div class="contract-container">
+    <div class="corner-decor top-l"></div>
+    <div class="corner-decor top-r"></div>
+    <div class="corner-decor bot-l"></div>
+    <div class="corner-decor bot-r"></div>
+
+    <div class="header">
+      <span class="sub-badge">Văn Bản Minh Ước Đồng Hành</span>
+      <h1>Khế Ước Bin &amp; Bean</h1>
+      <p>Thiết lập trên nền tảng thấu hiểu, tự nguyện và son sắt</p>
+    </div>
+
+    <!-- Thanh tiến trình -->
+    <div class="step-indicator">
+      <div class="dot active" id="dot-1"></div>
+      <div class="dot" id="dot-2"></div>
+      <div class="dot" id="dot-3"></div>
+      <div class="dot" id="dot-4"></div>
+      <div class="dot" id="dot-5"></div>
+    </div>
+
+    <!-- ================= BƯỚC 1: GIỚI THIỆU CHỦ THỂ (CẢ HAI LÀ BOY) ================= -->
+    <div class="step-content active" id="step-1">
+      <div class="party-grid">
+        <div class="profile-card">
+          <div class="avatar-icon">🤵🏻‍♂️</div>
+          <h3>Bin</h3>
+          <span class="tag">Bên Khởi Lập (Anh)</span>
+          <p>Cam kết bảo vệ, tôn trọng và làm điểm tựa vững chãi trong mọi thăng trầm.</p>
+        </div>
+
+        <div class="ampersand">&amp;</div>
+
+        <div class="profile-card">
+          <div class="avatar-icon">🤵🏽‍♂️</div>
+          <h3>Bean</h3>
+          <span class="tag">Bên Đồng Hiệp (Cậu)</span>
+          <p>Cam kết cùng sẻ chia, chung tay xây đắp mái ấm và đồng hành trọn đời.</p>
+        </div>
+      </div>
+      <p style="text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 24px;">
+        Hai cá nhân độc lập, tự do, cùng bước vào một giao kết trọn vẹn của cuộc đời.
+      </p>
+    </div>
+
+    <!-- ================= BƯỚC 2: CHỌN SÍNH LỄ & BẢO VẬT ================= -->
+    <div class="step-content" id="step-2">
+      <h3 style="font-size: 16px; margin-bottom: 6px; color: var(--rose-700);">Danh Mục Sính Lễ &amp; Lễ Vật Giao Kết</h3>
+      <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">Chọn các minh chứng vật chất và tinh thần trao tặng cho nhau:</p>
       
+      <div class="tribute-grid">
+        <!-- Vàng ròng 9999 -->
+        <div class="tribute-item selected" onclick="toggleSelect(this, 'Vàng Ròng 9999')">
+          <img class="tribute-img" src="https://images.unsplash.com/photo-1610375461246-83df859d849d?auto=format&fit=crop&w=200&q=80" alt="Vàng Ròng" />
+          <div class="tribute-info">
+            <h4>Kim Bảo 9999</h4>
+            <span>Biểu trưng giá trị bền vững</span>
+          </div>
+        </div>
+
+        <!-- Nhẫn kim cương đôi -->
+        <div class="tribute-item selected" onclick="toggleSelect(this, 'Nhẫn Đôi Kim Cương')">
+          <img class="tribute-img" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=200&q=80" alt="Nhẫn Đôi" />
+          <div class="tribute-info">
+            <h4>Nhẫn Đôi Đồng Tâm</h4>
+            <span>Gắn kết định tình vĩnh cửu</span>
+          </div>
+        </div>
+
+        <!-- Phương tiện di chuyển / Xe -->
+        <div class="tribute-item selected" onclick="toggleSelect(this, 'Phương Tiện / Xe Cộ')">
+          <img class="tribute-img" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=200&q=80" alt="Xe hơi" />
+          <div class="tribute-info">
+            <h4>Phương Tiện Chung Đôi</h4>
+            <span>Đưa nhau qua muôn nẻo đường</span>
+          </div>
+        </div>
+
+        <!-- Ngân quỹ & Tài chính -->
+        <div class="tribute-item selected" onclick="toggleSelect(this, 'Quỹ Tài Chính Chung')">
+          <img class="tribute-img" src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=200&q=80" alt="Tài chính" />
+          <div class="tribute-info">
+            <h4>Minh Bạch Tài Chính</h4>
+            <span>Ngân sách phát triển tương lai</span>
+          </div>
+        </div>
+
+        <!-- Sự tự do & Tôn trọng -->
+        <div class="tribute-item selected" onclick="toggleSelect(this, 'Tự Do & Tôn Trọng Cá Nhân')">
+          <img class="tribute-img" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80" alt="Tự do" />
+          <div class="tribute-info">
+            <h4>Tự Do &amp; Tin Cậy</h4>
+            <span>Tôn trọng không gian riêng của nhau</span>
+          </div>
+        </div>
+
+        <!-- Bữa tối & Trách nhiệm sẻ chia -->
+        <div class="tribute-item selected" onclick="toggleSelect(this, 'Cùng Nấu Ăn & Chia Sẻ Việc Nhà')">
+          <img class="tribute-img" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=200&q=80" alt="Bữa cơm" />
+          <div class="tribute-info">
+            <h4>Hơi Ấm Gian Bếp</h4>
+            <span>Cùng nấu nướng và gánh vác việc nhà</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= BƯỚC 3: CÁC ĐIỀU KHOẢN MINH ĐỊNH ================= -->
+    <div class="step-content" id="step-3">
+      <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--rose-700);">Các Điều Khoản Giao Ước Bất Khả Hủy</h3>
+      <div class="covenant-box">
+        <div class="covenant-item">
+          <div class="cov-num">I</div>
+          <div><strong>Bình Đẳng &amp; Minh Bạch:</strong> Mọi quyết định trọng đại về tài chính, chỗ ở và định hướng cuộc sống đều phải có sự đồng thuận từ cả Bin và Bean.</div>
+        </div>
+        <div class="covenant-item">
+          <div class="cov-num">II</div>
+          <div><strong>Nguyên Tắc Bất Bất Hòa Quá 24H:</strong> Không để sự bất đồng vượt quá một ngày đêm. Lắng nghe thẳng thắn, không chiến tranh lạnh, tôn trọng cảm xúc đối phương.</div>
+        </div>
+        <div class="covenant-item">
+          <div class="cov-num">III</div>
+          <div><strong>Đồng Cam Cộng Khổ:</strong> Khi một người gặp khó khăn trong sự nghiệp hay sức khỏe, người kia kiên định ở bên làm chỗ dựa không rời.</div>
+        </div>
+        <div class="covenant-item">
+          <div class="cov-num">IV</div>
+          <div><strong>Hiệu Lực Vĩnh Viễn:</strong> Khế ước này có giá trị từ giây phút ấn ký và không chấp nhận bất kỳ hành vi đơn phương bội ước nào.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= BƯỚC 4: NHẬP ĐỊA CHỈ EMAIL NHẬN BẢN LƯU ================= -->
+    <div class="step-content" id="step-4">
+      <h3 style="font-size: 16px; margin-bottom: 6px; color: var(--rose-700);">Lưu Bản Giao Kết Điện Tử</h3>
+      <p style="font-size: 13px; color: var(--text-muted);">
+        Nhập địa chỉ email của bạn để hệ thống tự động xuất chứng thư và gửi bản sao hợp đồng về hộp thư:
+      </p>
+
+      <div class="form-group">
+        <label class="form-label" for="partnerEmail">Địa Chỉ Email Tiếp Nhận:</label>
+        <input 
+          type="email" 
+          id="partnerEmail" 
+          class="input-field" 
+          placeholder="vd: bin.bean@gmail.com" 
+          required 
+        />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="customNote">Lời Thề / Ghi Chú Riêng (Tùy chọn):</label>
+        <textarea 
+          id="customNote" 
+          class="input-field" 
+          rows="3" 
+          placeholder="Viết một lời hứa gửi tới người kia..."
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- ================= BƯỚC 5: ẤN CHỨNG & XÁC NHẬN GỬI ================= -->
+    <div class="step-content" id="step-5">
+      <div class="seal-stage">
+        <div class="wax-seal" onclick="confirmAndSend()">B&amp;B</div>
+        <h3 style="font-size: 18px; color: var(--ink-navy); margin-bottom: 6px;">Niêm Phong Ấn Ký</h3>
+        <p class="seal-desc">
+          Nhấn vào <strong>Con Dấu Hoàng Gia</strong> hoặc bấm nút <strong>Xác Nhận &amp; Gửi Email</strong> phía dưới để chính thức phê duyệt và gửi chứng thư điện tử về hộp thư đã đăng ký.
+        </p>
+
+        <button type="button" class="nav-btn btn-submit" id="btn-final-send" onclick="confirmAndSend()">
+          📜 Xác Nhận &amp; Gửi Về Email
+        </button>
+
+        <div id="statusResult" class="status-msg"></div>
+      </div>
+    </div>
+
+    <!-- Thanh Điều Hướng < > -->
+    <div class="nav-bar">
+      <button class="nav-btn btn-prev" id="btnPrev" onclick="navigateStep(-1)" style="visibility: hidden;">
+        &lt; Quay Lại
+      </button>
+
+      <span id="stepCounter" style="font-size: 12px; font-weight: 600; color: var(--text-muted);">
+        Giai đoạn 1 / 5
+      </span>
+
+      <button class="nav-btn btn-next" id="btnNext" onclick="navigateStep(1)">
+        Tiếp Tục &gt;
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 5;
+    let selectedTributes = [
+      'Kim Bảo 9999', 
+      'Nhẫn Đôi Đồng Tâm', 
+      'Phương Tiện Chung Đôi', 
+      'Minh Bạch Tài Chính', 
+      'Tự Do & Tin Cậy', 
+      'Hơi Ấm Gian Bếp'
+    ];
+
+    // Xử lý chuyển trang < >
+    function navigateStep(direction) {
+      if (direction === 1) {
+        if (currentStep === 4) {
+          const emailInput = document.getElementById('partnerEmail').value.trim();
+          if (!emailInput || !emailInput.includes('@')) {
+            alert('Vui lòng nhập địa chỉ email hợp lệ trước khi tiếp tục!');
+            return;
+          }
+        }
+      }
+
+      const next = currentStep + direction;
+      if (next >= 1 && next <= totalSteps) {
+        document.getElementById(`step-${currentStep}`).classList.remove('active');
+        document.getElementById(`dot-${currentStep}`).classList.remove('active');
+
+        currentStep = next;
+
+        docume
